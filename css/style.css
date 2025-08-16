@@ -1,4 +1,27 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+body { 
+    --max-card-height: 420px; 
+}
+.card-product { 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+}
+.card-product .card-body { 
+    display:flex; 
+    flex-direction:column; 
+}
+.card-product .price { 
+    font-weight: 600; 
+}
+.badge-stock {
+    font-size: .775rem; 
+}
+.input-qty { 
+    width: 100%; max-width: 90px; 
+}
+.table td, .table th { 
+    vertical-align: middle; 
+}
+#invoiceContent .table th, #invoiceContent .table td { 
+    vertical-align: middle; 
 }
