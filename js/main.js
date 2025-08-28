@@ -15,7 +15,7 @@ const els = {
   badge: document.getElementById("cartCount"),
 };
 
-let inventory = initialProducts.map((p) => ({ ...p })); // copia el arreglo de productos para poder modificar el stock
+let inventory = JSON.parse(localStorage.getItem("inventory")) || initialProducts.map(p => ({ ...p }));
 const cart = new Map(); // carrito como Map: id -> { id, nombre, precio, cantidad }
 
 renderProducts(els.productList, inventory);
@@ -67,6 +67,10 @@ els.productList.addEventListener("click", (e) => {
 
     const lbl = document.querySelector(`.qty-label[data-id="${id}"]`);
     const q = parseInt(lbl?.textContent || "1", 10);
+
+    if (!localStorage.getItem("inventory_snapshot")) {
+      localStorage.setItem("inventory_snapshot", JSON.stringify(inventory));
+    }
 
     // Reserva: descuenta del stock del inventario
     if (!changeStock(id, -q)) {
@@ -216,5 +220,6 @@ els.btnConfirm?.addEventListener("click", () => {
     fixedCart.push(product);
   }
   localStorage.setItem("cart", JSON.stringify(fixedCart));
+
   location.href = "./html/payment-form.html";
 });

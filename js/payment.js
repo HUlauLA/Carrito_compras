@@ -116,6 +116,44 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     localStorage.setItem("userData", JSON.stringify(userData));
 
-    location.href = "purchase-completed.html";
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let baseInventory =
+      JSON.parse(localStorage.getItem("inventory_snapshot")) ||
+      JSON.parse(localStorage.getItem("inventory")) ||
+      [];
+
+    // ✅ Descontar stock sobre baseInventory (no sobre "inventory")
+    for (const item of cart) {
+      const p = baseInventory.find(x => x.id === item.id);
+      if (p) {
+        const q = Number(item.qty) || 0;
+        p.stock = Math.max(0, p.stock - q);
+      }
+    }
+
+    // Guardar inventario final
+    localStorage.setItem("inventory", JSON.stringify(baseInventory));
+    localStorage.removeItem("inventory_snapshot");
+
+    // Redirigir a la pantalla de compra completada
+    location.href = "./purchase-completed.html";
   });
+
+  const backBtn = document.getElementById("back-button");
+  if (backBtn) {
+    backBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Restaurar inventario previo (si había snapshot)
+      const invSnap = localStorage.getItem("inventory_snapshot");
+      if (invSnap) {
+        localStorage.setItem("inventory", invSnap);
+        localStorage.removeItem("inventory_snapshot");
+      }
+
+      // NO borres el carrito: el usuario quiere seguir editando
+      location.href = "../index.html";
+    });
+  }
 });

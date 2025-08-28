@@ -88,10 +88,13 @@ document.getElementById("download-button").addEventListener("click", () => {
   doc.text(`Pago con tarjeta: ${tarjetaMasked}`, 15, finalY + 26);
 
   doc.save(`factura_${facturaNum}.pdf`);
-  localStorage.clear();
+  localStorage.removeItem("cart");
+  localStorage.removeItem("userData");
 });
 
 document.getElementById("back-button").addEventListener("click", () => {
-  location.href = "/";
-  localStorage.clear();
+  location.href = "../index.html";
+  localStorage.removeItem("cart");
+  localStorage.removeItem("userData");
+  
 });
