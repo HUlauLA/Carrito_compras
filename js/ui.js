@@ -7,26 +7,27 @@ export function renderProducts(container, inventory) {
     col.className = 'col';
     col.innerHTML = `
       <div class="card h-100 shadow-sm">
-        <img src="https://static.vecteezy.com/system/resources/previews/003/237/381/non_2x/line-icon-for-product-vector.jpg"
-             class="card-img-top" alt="${escapeHtml(p.nombre)}">
+        <div class='card-img-top store-color'>
+        <img src="${p.img}" class="card-img-top" alt="${escapeHtml(p.nombre)}">
+        </div>
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${escapeHtml(p.nombre)}</h5>
-          <p class="card-text text-muted mb-1">${p.precio}</p>
-          <span class="badge text-bg-${p.stock > 0 ? 'success' : 'secondary'} mb-2">
-            ${p.stock > 0 ? `Stock: ${p.stock}` : 'Agotado'}
+          <h5 class="card-title text-uppercase">${escapeHtml(p.nombre)}</h5>
+          <p class="card-text text-muted fs-5 mb-3">$${p.precio}</p>
+          <span class="badge mb-3" style="background-color: ${p.stock > 0 ? '#67d48d' : '#9da29e'}">
+            ${p.stock > 0 ? `Stock: ${p.stock} unidades` : 'Agotado'}
           </span>
 
           <div class="d-flex align-items-center gap-2 mt-auto">
             <div class="btn-group" role="group" aria-label="Selector cantidad">
               <button class="btn btn-outline-secondary btn-sm btn-minus"
                       data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>-</button>
-              <span class="px-2 fw-semibold qty-label" data-id="${p.id}">1</span>
+              <span class="px-3 fw-semibold qty-label" data-id="${p.id}">1</span>
               <button class="btn btn-outline-secondary btn-sm btn-plus"
                       data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>+</button>
             </div>
-            <button class="btn btn-sm btn-primary btn-add"
+            <button class="btn btn-success btn-add w-100"
                     data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>
-              Agregar
+              <i class="bi bi-cart-plus"></i> Agregar al carrito
             </button>
           </div>
         </div>

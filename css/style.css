@@ -25,3 +25,17 @@ body {
 #invoiceContent .table th, #invoiceContent .table td { 
     vertical-align: middle; 
 }
+.store-color {
+    background-color: rgb(153, 107, 94);
+    color: white;
+    font-weight: bold;
+}
+.store-color-secondary {
+    background-color: rgb(84, 84, 84);
+    color: white;
+    font-weight: bold;
+}
+.store-text{
+    color: rgb(153, 107, 94);
+    font-weight: bold;
+}
