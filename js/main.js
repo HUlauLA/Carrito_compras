@@ -216,5 +216,5 @@ els.btnConfirm?.addEventListener("click", () => {
     fixedCart.push(product);
   }
   localStorage.setItem("cart", JSON.stringify(fixedCart));
-  location.href = "./html/purchase-completed.html";
+  location.href = "./html/payment-form.html";
 });
