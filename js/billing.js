@@ -1,14 +1,7 @@
 const { jsPDF } = window.jspdf;
 
-const products = [
-  { id: "P001", nombre: "Café en grano", precio: 6.5, stock: 12 },
-  { id: "P002", nombre: "Taza cerámica", precio: 4.25, stock: 20 },
-  { id: "P003", nombre: "Galletas artesanales", precio: 3.95, stock: 15 },
-  { id: "P004", nombre: "Termo 1L", precio: 12.9, stock: 6 },
-  { id: "P005", nombre: "Filtro reusable", precio: 2.75, stock: 30 },
-];
-
 document.getElementById("download-button").addEventListener("click", () => {
+  const products = JSON.parse(localStorage.getItem("cart"));
   const doc = new jsPDF();
 
   doc.setFillColor(255, 87, 34);
