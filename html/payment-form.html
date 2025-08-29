@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datos de pago</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fs-6 fw-bold badge store-color" href="#">
+        <i class="bi bi-balloon-heart"></i> Huellitas Felices
+      </a>
+      <div class="ms-auto">
+        <!-- <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          <i class="bi bi-cart"></i>
+          <span id="cartCount" class="badge text-bg-secondary ms-1">0</span>
+        </button> -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- #region alert -->
+  <div id="form-alert" class="alert alert-danger d-none" role="alert" style="
+        position: absolute;
+        top: 20px;
+        left: 100%;
+        transform: translateX(-120%);
+        z-index: 1050;
+        min-width: 400px;
+        max-width: 600px;
+        text-align: left;
+      "></div>
+  <!-- #enregion alert -->
+
+  <section class="store-color text-center py-5">
+    <i class="fas fa-paw" style="font-size: 3.5rem;"></i>
+    <h1 class="text-uppercase my-4">Finalizar Compra</h1>
+  </section>
+
+  <main class="container mt-5">
+
+    <!-- #region Form -->
+    <form id="contact-form">
+
+      <div class="card shadow-sm border-0 mb-5">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <div class="text-center">
+                <i class="bi bi-person-vcard" style="color: rgb(153, 107, 94); font-size: 3.5rem;"></i>
+                <p class="text-uppercase fw-bold">Datos de contacto</p>
+              </div>
+            </div>
+            <div class="col-md mb-3">
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Nombres" aria-label="Nombres" />
+                </div>
+                <div class="col-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Apellidos" aria-label="Apellidos" />
+                </div>
+                <div class="col-6 mb-3">
+                  <input type="tel" class="form-control" placeholder="Télefono" aria-label="Télefono" />
+                </div>
+                <div class="col-6 mb-3">
+                  <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" />
+                </div>
+                <div class="col-12 mb-3">
+                  <textarea name="direccion" id="direccion" class="form-control" placeholder="Dirección"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-sm border-0 mb-5">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <div class="text-center">
+                <i class="bi bi-credit-card-fill" style="color: rgb(153, 107, 94); font-size: 3.5rem;"></i>
+                <p class="text-uppercase fw-bold">Datos de pago</p>
+              </div>
+            </div>
+            <div class="col-md mb-3">
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <input type="text" class="form-control" placeholder="Número de tarjeta" aria-label="Número de tarjeta" />
+                </div>
+                <div class="col-12 mb-3">
+                  <input type="text" class="form-control" placeholder="Nombre del titular" aria-label="Nombre del titular" />
+                </div>
+                <div class="col-9 mb-3 d-flex column-gap-3">
+                  <input type="text" class="form-control" placeholder="Mes de vencimiento" aria-label="Mes de vencimiento" />
+                  <input type="text" class="form-control" placeholder="Año de vencimiento" aria-label="Año de vencimiento" />
+                </div>
+                <div class="col-3">
+                  <input type="text" class="form-control" placeholder="Código de seguridad" aria-label="Código de seguridad" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 offset-4 d-flex justify-content-evenly my-5">
+        <a href="/" class="btn btn-outline-secondary">
+          <i class="bi bi-cart-x"></i> Cancelar Compra
+        </a>
+        <button type="submit" class="btn btn-success">
+          <i class="bi bi-check-circle"></i> Confirmar Compra
+        </button>
+      </div>
+    </form>
+    <!-- #endregion Form-->
+  </main>
+  <script src="../js/payment.js"></script>
+</body>
+
+<footer class="store-color-secondary mt-5">
+  <div class="container py-5">
+    <p class="text-center mb-0">&copy; Todos los Derechos Reservados 2025</p>
+  </div>
+</footer>
+
+</html>

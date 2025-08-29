@@ -1,14 +1,9 @@
 const { jsPDF } = window.jspdf;
 
-const products = [
-  { id: "P001", nombre: "Café en grano", precio: 6.5, stock: 12 },
-  { id: "P002", nombre: "Taza cerámica", precio: 4.25, stock: 20 },
-  { id: "P003", nombre: "Galletas artesanales", precio: 3.95, stock: 15 },
-  { id: "P004", nombre: "Termo 1L", precio: 12.9, stock: 6 },
-  { id: "P005", nombre: "Filtro reusable", precio: 2.75, stock: 30 },
-];
-
 document.getElementById("download-button").addEventListener("click", () => {
+  const products = JSON.parse(localStorage.getItem("cart")) || [];
+  const userData = JSON.parse(localStorage.getItem("userData")) || {};
+
   const doc = new jsPDF();
 
   doc.setFillColor(255, 87, 34);
@@ -26,14 +21,20 @@ document.getElementById("download-button").addEventListener("click", () => {
   doc.setTextColor(0);
   doc.setFontSize(10);
   doc.text("Factura para:", 15, 50);
-  doc.text("Nombre: Juan Pérez", 15, 56);
-  doc.text("Ubicación: San Salvador", 15, 62);
+  doc.text(
+    `Nombre: ${userData.nombres || ""} ${userData.apellidos || ""}`,
+    15,
+    56
+  );
+  doc.text(`Teléfono: ${userData.telefono || ""}`, 15, 62);
+  doc.text(`Correo: ${userData.correo || ""}`, 15, 68);
 
-  doc.text("Número: 00001", 150, 50);
+  const facturaNum = Math.floor(Math.random() * 1000000);
+  doc.text(`Número: ${facturaNum}`, 150, 50);
   doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 150, 56);
 
   const body = products.map((p, i) => {
-    const qty = (i + 1) * 2;
+    const qty = p.cantidad || 1;
     return [
       (i + 1).toString(),
       p.nombre,
@@ -72,12 +73,28 @@ document.getElementById("download-button").addEventListener("click", () => {
   let finalY = doc.lastAutoTable.finalY + 10;
 
   doc.text("TOTAL:", 150, finalY + 20);
-
   doc.setFillColor(255, 87, 34);
   doc.setTextColor(255, 255, 255);
   doc.rect(170, finalY + 12, 40, 12, "F");
   doc.text(`$${subtotal.toFixed(2)}`, 190, finalY + 20, { align: "center" });
 
-  const randomNumber = Math.floor(Math.random() * 100000);
-  doc.save(`factura_${randomNumber}.pdf`);
+  const direccion = userData.direccion || "";
+  const tarjeta = userData.tarjeta || "";
+  const tarjetaMasked = tarjeta ? "**** **** **** " + tarjeta.slice(-4) : "";
+
+  doc.setTextColor(0);
+  doc.setFontSize(10);
+  doc.text(`Dirección: ${direccion}`, 15, finalY + 20);
+  doc.text(`Pago con tarjeta: ${tarjetaMasked}`, 15, finalY + 26);
+
+  doc.save(`factura_${facturaNum}.pdf`);
+  localStorage.removeItem("cart");
+  localStorage.removeItem("userData");
+});
+
+document.getElementById("back-button").addEventListener("click", () => {
+  location.href = "../index.html";
+  localStorage.removeItem("cart");
+  localStorage.removeItem("userData");
+  
 });
