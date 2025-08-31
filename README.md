@@ -21,11 +21,11 @@ Proyecto realizado con las siguientes técnologías
 - Bootstrap
 
 ### 🧑‍🎓 Estudiantes
-Andrés René Velásquez Rodríguez - VR222732
-Laura Sofía Pineda Castro - PC230111
-Oliver Alejandro Erazo Reyes - ER231663
-Rodrigo Elías Vázquez Mendoza - VM220244
-René Francisco Guevara Alfaro - GA202826
+- Andrés René Velásquez Rodríguez - VR222732
+- Laura Sofía Pineda Castro - PC230111
+- Oliver Alejandro Erazo Reyes - ER231663
+- Rodrigo Elías Vázquez Mendoza - VM220244
+- René Francisco Guevara Alfaro - GA202826
 
 ### :link: Enlace
 
